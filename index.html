@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>基本的な社会人のマナー講座</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="phone-frame">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">S</span>
+          <div>
+            <p class="eyebrow">SHAKAI STEP</p>
+            <h1>基本的な社会人のマナー講座</h1>
+          </div>
+        </div>
+        <button class="ghost-button" id="restartTopButton" type="button">やりなおす</button>
+      </header>
+
+      <section class="screen-deck">
+        <section class="screen intro-screen is-active" id="introScreen" aria-label="スタート画面">
+          <div class="home-status">
+            <div class="status-chip flame-chip">
+              <span class="chip-icon">🔥</span>
+              <span>12</span>
+            </div>
+            <div class="status-chip gem-chip">
+              <span class="chip-icon">💎</span>
+              <span>240</span>
+            </div>
+            <div class="status-chip heart-chip">
+              <span class="chip-icon">♥</span>
+              <span>5</span>
+            </div>
+          </div>
+
+          <section class="intro-hero-card">
+            <div class="home-copy">
+              <p class="hero-kicker">ユニット 1</p>
+              <h2>基本的な社会人の<br>マナー講座</h2>
+              <p class="hero-text">やさしく学んで、きれいに身につく。</p>
+              <div class="hero-mini-pills">
+                <span class="hero-mini-pill">8レッスン</span>
+                <span class="hero-mini-pill">4択クイズ</span>
+                <span class="hero-mini-pill">星5判定</span>
+              </div>
+            </div>
+
+            <div class="intro-visual">
+              <div class="visual-glow" aria-hidden="true"></div>
+              <div class="mentor-stage hero-mentor" id="mentorStage" data-state="idle">
+                <div class="mentor-aura" aria-hidden="true"></div>
+                <span class="spark spark-1" aria-hidden="true"></span>
+                <span class="spark spark-2" aria-hidden="true"></span>
+                <span class="spark spark-3" aria-hidden="true"></span>
+                <div class="mentor-portrait large-mentor">
+                  <img id="mentorImage" src="./assets/mentor-idol-cutout-cropped.png" alt="社会人マナーを教えてくれるアバター">
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="home-panel">
+            <div class="unit-pill"><span id="questionCountLabel">8</span> レッスン</div>
+            <div class="home-panel-row">
+              <div>
+                <p class="panel-label">きょうのテーマ</p>
+                <h3>第一印象</h3>
+              </div>
+              <div class="home-score">
+                <span class="score-label">ゴール</span>
+                <strong id="starCountLabel">☆☆☆☆☆</strong>
+              </div>
+            </div>
+            <button class="continue-button home-start-button" id="startPanel" type="button">スタート</button>
+          </section>
+        </section>
+
+        <section class="screen quiz-screen" id="quizScreen" aria-label="クイズ画面">
+          <section class="quiz-header">
+            <div class="lesson-progress">
+              <span class="close-pill">×</span>
+              <div class="progress-track" aria-hidden="true">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <span class="progress-text" id="progressText">1 / 8</span>
+            </div>
+            <div class="lives-pill" id="livesText">♥♥♥♥♥</div>
+          </section>
+
+          <section class="lesson-stage">
+            <section class="quiz-card question-card" id="quizCard">
+              <div class="question-topline">
+                <div class="question-tag" id="questionTag">レッスン 1</div>
+                <p class="question-helper" id="questionHelper">1つえらぶ</p>
+              </div>
+              <section class="scenario-card">
+                <div class="scenario-avatar" id="questionMentor" data-mood="thinking" aria-hidden="true">
+                  <div class="scenario-avatar-glow"></div>
+                  <div class="scenario-avatar-frame">
+                    <img id="questionMentorImage" src="./assets/mentor-thinking.png" alt="">
+                  </div>
+                  <span class="scenario-mood-badge" id="mentorMoodEmoji">🤔</span>
+                </div>
+                <div class="scenario-copy">
+                  <p class="scenario-kicker" id="scenarioLabel">いっしょに考えよう</p>
+                  <h2 id="questionPrompt">読み込み中...</h2>
+                  <p class="scenario-thought" id="mentorSpeech">うーん、どれが自然かな？</p>
+                </div>
+              </section>
+              <p class="decision-label">どうする？</p>
+              <div class="focus-note" id="questionFocus">ヒント: 第一印象</div>
+              <div class="choices" id="choicesContainer" role="list"></div>
+            </section>
+
+            <section class="quiz-card explanation-card" id="explanationCard" hidden>
+              <div class="answer-effects" aria-hidden="true">
+                <span class="effect-dot effect-dot-1"></span>
+                <span class="effect-dot effect-dot-2"></span>
+                <span class="effect-dot effect-dot-3"></span>
+                <span class="effect-ring"></span>
+              </div>
+              <div class="explanation-mentor" id="explanationMentor" data-state="happy" aria-hidden="true">
+                <div class="explanation-mentor-glow"></div>
+                <div class="explanation-mentor-frame">
+                  <img id="explanationMentorImage" src="./assets/mentor-happy.png" alt="">
+                </div>
+                <p class="explanation-mentor-line" id="explanationMentorLine">いい感じ。その調子。</p>
+              </div>
+              <div class="question-topline">
+                <div class="question-tag" id="explanationTag">解説</div>
+                <p class="question-helper" id="explanationHelper">答えをチェック</p>
+              </div>
+              <div class="feedback-copy">
+                <div class="feedback-pill" id="feedbackPill">せいかい</div>
+                <p class="feedback-answer" id="feedbackAnswer"></p>
+                <p class="feedback-mini" id="feedbackMini"></p>
+                <p class="feedback-explanation" id="feedbackExplanation"></p>
+              </div>
+              <section class="sugoroku-card" id="sugorokuCard" aria-label="すごろく進行">
+                <div class="sugoroku-topline">
+                  <p class="sugoroku-title">すごろく</p>
+                  <strong class="sugoroku-progress" id="sugorokuProgressLabel">0 / 8</strong>
+                </div>
+                <div class="sugoroku-track" id="sugorokuTrack">
+                  <div class="sugoroku-steps" id="sugorokuSteps" aria-hidden="true"></div>
+                  <div class="sugoroku-avatar" id="sugorokuAvatar">
+                    <img id="sugorokuAvatarImage" src="./assets/mentor-thinking.png" alt="進んでいくアバター">
+                  </div>
+                </div>
+                <p class="sugoroku-caption" id="sugorokuCaption">スタート地点だよ。</p>
+              </section>
+              <button class="continue-button explanation-next-button" id="nextButton" type="button">つぎへ</button>
+            </section>
+          </section>
+        </section>
+
+        <section class="screen result-screen" id="resultScreen" aria-label="結果画面">
+          <section class="result-card">
+            <div class="result-burst">★</div>
+            <p class="result-kicker">けっか</p>
+            <h2 id="resultTitle">マスター</h2>
+            <div class="result-stars" id="resultStars">☆☆☆☆☆</div>
+            <p class="result-score" id="resultScore">8問中0問正解</p>
+            <p class="result-copy" id="resultCopy"></p>
+            <div class="result-meter">
+              <div class="meter-fill" id="resultMeterFill"></div>
+            </div>
+            <button class="continue-button retry-button" id="restartButton" type="button">もういちど</button>
+          </section>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
